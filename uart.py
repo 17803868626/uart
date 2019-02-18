@@ -10,6 +10,7 @@ sensor.set_framesize(sensor.QVGA)   # Set frame size to QVGA (320x240)
 sensor.skip_frames(time = 2000)     # Wait for settings take effect.
 clock = time.clock()                # Create a clock object to track the FPS.
 
+led=pyb.LED(2)
 uart1=pyb.UART(1,115200)
 m=0
 
@@ -21,4 +22,4 @@ while(True):
     m=m+1
 
     print(clock.fps())              # Note: OpenMV Cam runs about half as fast when connected
-                                    # to the IDE. The FPS should increase once disconnected.
+    led.toggle()
