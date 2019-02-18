@@ -11,13 +11,14 @@ sensor.skip_frames(time = 2000)     # Wait for settings take effect.
 clock = time.clock()                # Create a clock object to track the FPS.
 
 uart1=pyb.UART(1,115200)
+m=0
 
 while(True):
     clock.tick()                    # Update the FPS clock.
     img = sensor.snapshot()         # Take a picture and return the image.
-    uart1.writechar(42)
-    uart1.write(" \r\n")
 
+    uart1.write("%s\r\n"%m)
+    m=m+1
 
     print(clock.fps())              # Note: OpenMV Cam runs about half as fast when connected
                                     # to the IDE. The FPS should increase once disconnected.
